@@ -174,21 +174,23 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
           SliverAppBar(
             expandedHeight: 180,
             pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                'Formulir Pendaftaran',
-                style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 16,
-                ),
+            title: const Text(
+              'Formulir Pendaftaran',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontSize: 18,
+                color: Colors.white,
               ),
+            ),
+            backgroundColor: _categoryColor,
+            flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 fit: StackFit.expand,
                 children: [
                   Image.asset(
                     widget.event.imageUrl,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => const SizedBox(),
+                    errorBuilder: (context, error, stackTrace) => const SizedBox(),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -196,25 +198,42 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          _categoryColor.withValues(alpha: 0.5),
-                          Colors.black.withValues(alpha: 0.85),
+                          _categoryColor.withValues(alpha: 0.4),
+                          Colors.black.withValues(alpha: 0.88),
                         ],
                       ),
                     ),
                   ),
                   SafeArea(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 56, 16, 8),
+                      padding: const EdgeInsets.fromLTRB(16, 40, 16, 12),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: _categoryColor,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              widget.event.category.toUpperCase(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
                           Text(
                             widget.event.title,
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
-                              fontSize: 14,
+                              fontSize: 15,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
