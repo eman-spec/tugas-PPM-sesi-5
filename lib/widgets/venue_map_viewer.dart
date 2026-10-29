@@ -94,7 +94,11 @@ class VenueMapViewer extends StatelessWidget {
               scaleEnabled: true,
               minScale: 0.5,
               maxScale: 4.0,
-              child: _VenueMapDrawing(),
+              child: Image.asset(
+                'assets/images/venue_map.png',
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => _VenueMapDrawing(),
+              ),
             ),
           ),
         ),
